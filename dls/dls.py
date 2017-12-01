@@ -12,10 +12,18 @@ def bot_login():
 
 def run_bot(r):
     subreddit = r.subreddit('cricket')
-    for submission in subreddit.submissions:
+    for submission in subreddit.submissions():
         if "Match Thread" in submission.title:
-		
-    return i
+            print(submission.title)
+            k = submission.title.split(" ")
+            team1 = k[2]
+            print(team1)
+        #    i = 3
+        #    while k[i] != "vs" or i > len(k):
+        #        team1+=k[i]
+            #    i+=1
+            #print(team1)
+
 
 r = bot_login()
-print("There are ",run_bot(r)," instances of dragon")
+run_bot(r)
