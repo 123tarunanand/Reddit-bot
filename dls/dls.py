@@ -1,5 +1,6 @@
 import praw
 import config
+from pycricbuzz import Cricbuzz
 
 def bot_login():
     r = praw.Reddit(username = config.username,
@@ -11,18 +12,34 @@ def bot_login():
 
 
 def run_bot(r):
+    c = Cricbuzz()
     subreddit = r.subreddit('cricket')
-    for submission in subreddit.submissions():
-        if "Match Thread" in submission.title:
-            print(submission.title)
-            k = submission.title.split(" ")
-            team1 = k[2]
-            print(team1)
-        #    i = 3
-        #    while k[i] != "vs" or i > len(k):
-        #        team1+=k[i]
-            #    i+=1
-            #print(team1)
+    submission = subreddit.submissions()
+    for post in submission:
+        if "Match Thread" in post.title:
+            print(post.title)
+            print(post.selftext)
+    #for submission in subreddit.submissions():
+    #    title = submission.title
+    #    #title = title.split()
+        #if(len(title)>2):
+            #if title[0] =="Match" and title[1]=="Thread:":
+            #    title = submission.title
+                #print(title)
+                #mindex=-1
+                #for match in c.matches():
+                #    if match['srs']
+                #    desc = match['mchdesc'].split()
+                #    if desc[0].lower() in title.lower() or desc[2].lower() in title.lower():
+                #        mindex = match['id']
+                #        break
+                #if mindex ==-1:
+                #    print("No link found")
+                #    break
+                #print(c.livescore(mindex))
+
+
+
 
 
 r = bot_login()
